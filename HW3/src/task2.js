@@ -1,18 +1,22 @@
-import fs from 'node:fs'
-import path from 'node:path'
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
-const filePath = path.resolve("src", "info.txt")
+const filePath = path.resolve("src", "info.txt");
 
-fs.writeFile(filePath, 'Node.js is awesome!', (err) => {
-    if (err) {
-        console.log(`Возникла ошибка при создании файла ${err}`);
-    }
+async function createAndReadFile() {
+  try {
+    // Запись в файл
+    await fs.writeFile(filePath, 'Node.js is awesome!');
     console.log('Файл успешно создался');
-    fs.readFile(filePath, 'utf-8', (err, content) => {
-        if (err) {
-            throw err
-        } console.log(content);
 
-    })
-})
+    // Чтение из файла
+    const content = await fs.readFile(filePath, 'utf-8');
+    console.log('Содержимое файла:', content);
+
+  } catch (err) {
+    console.error(`Произошла ошибка: ${err.message}`);
+  }
+}
+
+createAndReadFile();
 

@@ -3,19 +3,6 @@ import path from 'node:path';
 
 const folderPath = path.resolve("src", "myFolder");
 
-// fs.mkdir(folderPath, { recursive: true }, (err) => {
-//     if (err) return console.error('Ошибка при создании:', err);
-//     console.log('Каталог успешно создан');
-
-//     setTimeout(() => {
-//         fs.rm(folderPath, { recursive: true }, (err) => {
-//             if (err) return console.error('Ошибка при удалении:', err);
-//             console.log('Каталог успешно удалён');
-//         });
-//     }, 5000); // 100 мс задержки
-// });
-
-
 async function createAndDeleteFolder() {
     try {
         await fs.mkdir(folderPath, { recursive: true });
@@ -31,7 +18,7 @@ async function createAndDeleteFolder() {
                     return;
                 }
 
-                await fs.rmdir(folderPath); 
+                await fs.rmdir(folderPath);
                 console.log('Каталог успешно удалён');
             } catch (err) {
                 console.error('Ошибка при удалении:', err);
@@ -44,3 +31,16 @@ async function createAndDeleteFolder() {
 }
 
 createAndDeleteFolder();
+// fs.mkdir(folderPath, { recursive: true }, (err) => {
+//     if (err) return console.error('Ошибка при создании:', err);
+//     console.log('Каталог успешно создан');
+
+//     setTimeout(() => {
+//         fs.rm(folderPath, { recursive: true }, (err) => {
+//             if (err) return console.error('Ошибка при удалении:', err);
+//             console.log('Каталог успешно удалён');
+//         });
+//     }, 5000); // 100 мс задержки
+// });
+
+
