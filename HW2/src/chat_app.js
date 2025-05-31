@@ -1,13 +1,17 @@
 import EventEmitter from 'node:events';
 
-const emitter = new EventEmitter();
-emitter.on("user-name", (name) => {
-    console.log(`Hello ${name}`);
-});
-function sendMessage(user) {
-    emitter.emit('user-name', user)
+
+
+const chatEmitter = new EventEmitter();
+
+function sendMessage(username, message, emitter) {
+    emitter.emit('message', { username, message });
 }
 
+chatEmitter.on('message', ({ username, message }) => {
+    console.log(`${username}: ${message}`);
+});
 
-sendMessage('Andrew')
-sendMessage('Tomas')
+sendMessage('Дмитрий', 'Привет всем!', chatEmitter);
+sendMessage('Богдан', 'Как дела?', chatEmitter);
+sendMessage('Василий', 'Присоединяюсь к чату!', chatEmitter);
