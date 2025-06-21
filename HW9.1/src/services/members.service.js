@@ -25,6 +25,8 @@ export const loginMember = async (payload) => {
 
     const member = await Member.findOne({ where: { email } })
     if (!member || !(await bcrypt.compare(password, member.password))) {
+        // если member нет то вернет null
+
         throw HttpExeption(401, 'Email or password is not correct');
     }
 

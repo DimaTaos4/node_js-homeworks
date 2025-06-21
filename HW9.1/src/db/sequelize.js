@@ -20,6 +20,7 @@ export const connectDatabase = async () => {
     } catch (error) {
         console.log("Error connect database");
         console.log(error);
+        throw Error
     }
 }
 export default sequelize
